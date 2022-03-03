@@ -38,6 +38,11 @@ def edit_contact(request, pk):
     })
 
 
+def contact_detail(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, "contacts/contact_detail.html",
+                    {'contact': contact})
+
 def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'POST':
