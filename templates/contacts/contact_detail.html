@@ -34,12 +34,28 @@
   </div>
   {% endif %}
 
+  {% if contact.note %}
+  {% for note in contact.notes.all%}
+  <div class="flex">
+    <div class="pr2"><i class="icofont-ui-note"></i></div>
+    <div>{{ contact.note }}</div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  
 
   <p>
     <a href="{% url 'edit_contact' pk=contact.pk %}">Edit Contact</a><br>    
     <a class="red" href="{% url 'delete_contact' pk=contact.pk %}">Delete Contact</a>
   </p>
 </div>
+      {%for note in note %}
+      {% if note.contact_id == contact.id %}
+      <div>{{ note.text }}</div>
+      <div>{{ note.created_date }}</div>
+    {% endif %}
+    {% endfor %}
 
-</div>  
-{% endblock %}
+    <p><a href="{% url 'add_note' pk=contact.pk%}">Add New Note</a></p>
+  
+    {% endblock %}
